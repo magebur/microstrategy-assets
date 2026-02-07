@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Einkaufsliste - wochenplan.net{% endblock %}
+
+{% block content %}
+<section class="shopping-header">
+    <h1>Deine Einkaufsliste</h1>
+    <p class="shopping-meta">
+        {{ plan.persons }} {{ "Person" if plan.persons == 1 else "Personen" }} &middot;
+        {{ plan.entries|length }} Gerichte &middot;
+        {% set ns = namespace(total=0) %}
+        {% for cat, items in grouped.items() %}
+            {% set ns.total = ns.total + items|length %}
+        {% endfor %}
+        {{ ns.total }} Zutaten
+    </p>
+</section>
+
+<section class="shopping-list">
+    {% for category, items in grouped.items() %}
+    <div class="shopping-category">
+        <h2 class="category-title">{{ category }}</h2>
+        <ul class="item-list">
+            {% for item in items %}
+            <li class="shopping-item {% if item.is_staple %}is-staple{% endif %}">
+                <span class="item-name">{{ item.ingredient_name }}</span>
+                <span class="item-qty">{{ item.quantity|int if item.quantity == item.quantity|int else item.quantity }} {{ item.unit }}</span>
+                {% if item.is_staple %}
+                <span class="staple-badge" title="Vermutlich schon vorhanden">Vorrat</span>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="shopping-actions">
+    <a href="/check/{{ list_id }}" class="btn btn-primary btn-large">
+        Kühlschrank-Check starten
+    </a>
+    <a href="/plan/{{ plan_id }}" class="btn btn-secondary">
+        Zurück zum Wochenplan
+    </a>
+</section>
+{% endblock %}

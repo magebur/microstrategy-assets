@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}wochenplan.net - Essensplanung ohne Stress{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Diese Woche nicht mehr über Essen nachdenken.</h1>
+    <p class="hero-sub">
+        wochenplan.net erstellt dir einen kompletten Essensplan für die Woche &ndash;
+        mit aufeinander abgestimmten Rezepten und einer optimierten Einkaufsliste.
+    </p>
+    <p class="hero-claim">Wie HelloFresh, ohne Box, ohne Verpackung, ohne Aufpreis.</p>
+</section>
+
+<section class="preferences-form">
+    <h2>Dein Wochenplan in 30 Sekunden</h2>
+    <form action="/generate" method="POST" id="plan-form">
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="persons">Für wie viele Personen?</label>
+                <div class="stepper">
+                    <button type="button" class="stepper-btn" data-action="decrease" data-target="persons">-</button>
+                    <input type="number" id="persons" name="persons" value="2" min="1" max="8" readonly>
+                    <button type="button" class="stepper-btn" data-action="increase" data-target="persons">+</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="meals_per_week">Wie oft kochen pro Woche?</label>
+                <div class="stepper">
+                    <button type="button" class="stepper-btn" data-action="decrease" data-target="meals_per_week">-</button>
+                    <input type="number" id="meals_per_week" name="meals_per_week" value="5" min="2" max="7" readonly>
+                    <button type="button" class="stepper-btn" data-action="increase" data-target="meals_per_week">+</button>
+                </div>
+            </div>
+
+            <div class="form-group preferences-toggles">
+                <label>Vorlieben</label>
+                <div class="toggle-group">
+                    <label class="toggle">
+                        <input type="checkbox" name="vegetarian">
+                        <span class="toggle-label">Vegetarisch</span>
+                    </label>
+                    <label class="toggle">
+                        <input type="checkbox" name="kid_friendly" checked>
+                        <span class="toggle-label">Kinderfreundlich</span>
+                    </label>
+                    <label class="toggle">
+                        <input type="checkbox" name="quick">
+                        <span class="toggle-label">Schnelle Gerichte (&lt;30 Min)</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="toggle savings-toggle">
+                    <input type="checkbox" name="savings_mode">
+                    <span class="toggle-label">Sparmodus</span>
+                    <span class="toggle-hint">Günstigere Zutaten, mehr Überlappung</span>
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-large">
+            Wochenplan erstellen
+        </button>
+    </form>
+</section>
+
+<section class="how-it-works">
+    <h2>So funktioniert's</h2>
+    <div class="steps">
+        <div class="step">
+            <div class="step-number">1</div>
+            <h3>Einstellungen</h3>
+            <p>Personenanzahl, Kochhäufigkeit und grobe Vorlieben angeben.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <h3>Wochenplan</h3>
+            <p>Automatisch erstellter Essensplan mit aufeinander abgestimmten Rezepten.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <h3>Einkaufsliste</h3>
+            <p>Optimierte Liste &ndash; weniger Zutaten durch clevere Kombination.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">4</div>
+            <h3>Kühlschrank-Check</h3>
+            <p>Kurz prüfen, was schon da ist. Fertig.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

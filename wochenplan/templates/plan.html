@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Dein Wochenplan - wochenplan.net{% endblock %}
+
+{% block content %}
+<section class="plan-header">
+    <h1>Dein Wochenplan</h1>
+    <p class="plan-meta">
+        {{ plan.persons }} {{ "Person" if plan.persons == 1 else "Personen" }} &middot;
+        {{ plan.entries|length }} Gerichte
+        {% if plan.savings_mode %} &middot; Sparmodus{% endif %}
+    </p>
+</section>
+
+<section class="plan-grid">
+    {% for entry in plan.entries %}
+    <div class="plan-card" data-day-index="{{ entry.day_index }}" data-recipe-id="{{ entry.recipe_id }}">
+        <div class="card-day">{{ entry.day_label }}</div>
+        <div class="card-content">
+            <h3 class="card-title">
+                <a href="/recipe/{{ entry.recipe_id }}">{{ entry.recipe_name }}</a>
+            </h3>
+            <p class="card-description">{{ entry.description }}</p>
+            <div class="card-meta">
+                <span class="meta-time">{{ entry.prep_time_minutes + entry.cook_time_minutes }} Min</span>
+                <span class="meta-difficulty">{{ entry.difficulty }}</span>
+                {% if entry.is_vegetarian %}
+                <span class="meta-tag tag-veg">vegetarisch</span>
+                {% endif %}
+                {% if entry.cost_level == "guenstig" %}
+                <span class="meta-tag tag-cheap">günstig</span>
+                {% elif entry.cost_level == "teuer" %}
+                <span class="meta-tag tag-expensive">teuer</span>
+                {% endif %}
+            </div>
+            {% if entry.recipe_detail and entry.recipe_detail.ingredients %}
+            <div class="card-ingredients">
+                <span class="ingredients-label">Zutaten:</span>
+                {{ entry.recipe_detail.ingredients|map(attribute='ingredient_name')|join(', ') }}
+            </div>
+            {% endif %}
+        </div>
+        <button class="btn btn-swap" onclick="swapRecipe({{ plan.id }}, {{ entry.day_index }}, {{ entry.recipe_id }}, this)"
+                title="Anderes Gericht vorschlagen">
+            &#x21C4;
+        </button>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="plan-actions">
+    <a href="/shopping/{{ plan.id }}" class="btn btn-primary btn-large">
+        Einkaufsliste erstellen
+    </a>
+    <a href="/" class="btn btn-secondary">
+        Neuen Plan erstellen
+    </a>
+</section>
+{% endblock %}

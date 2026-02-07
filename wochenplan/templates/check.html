@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Kühlschrank-Check - wochenplan.net{% endblock %}
+
+{% block content %}
+<section class="check-header">
+    <h1>Kühlschrank-Check</h1>
+    <p class="check-intro">
+        Schau kurz in deinen Kühlschrank und deine Vorräte.
+        Hake ab, was du schon hast &ndash; den Rest kaufst du ein.
+    </p>
+    <div class="check-stats">
+        <span class="stat" id="stat-remaining">
+            {% set ns = namespace(total=0) %}
+            {% for cat, items in grouped.items() %}
+                {% set ns.total = ns.total + items|length %}
+            {% endfor %}
+            <strong id="remaining-count">{{ ns.total }}</strong> Zutaten noch zu kaufen
+        </span>
+    </div>
+</section>
+
+<section class="check-list">
+    {% for category, items in grouped.items() %}
+    <div class="check-category">
+        <h2 class="category-title">{{ category }}</h2>
+        <ul class="item-list check-items">
+            {% for item in items %}
+            <li class="check-item {% if item.is_checked %}is-checked{% endif %} {% if item.is_staple %}is-staple{% endif %}"
+                data-item-id="{{ item.id }}">
+                <label class="check-label">
+                    <input type="checkbox"
+                           class="check-checkbox"
+                           data-item-id="{{ item.id }}"
+                           {% if item.is_checked %}checked{% endif %}
+                           onchange="toggleItem({{ item.id }}, this.checked)">
+                    <span class="item-name">{{ item.ingredient_name }}</span>
+                    <span class="item-qty">{{ item.quantity|int if item.quantity == item.quantity|int else item.quantity }} {{ item.unit }}</span>
+                </label>
+                {% if item.is_staple %}
+                <span class="staple-badge">Vorrat</span>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="check-actions">
+    <button class="btn btn-outline" onclick="checkAllStaples()">
+        Alle Vorrats-Artikel abhaken
+    </button>
+    {% if plan_id %}
+    <a href="/plan/{{ plan_id }}" class="btn btn-secondary">
+        Zurück zum Wochenplan
+    </a>
+    {% endif %}
+</section>
+
+<section class="check-done" id="check-done" style="display:none;">
+    <h2>Fertig!</h2>
+    <p>Du weißt jetzt, was du brauchst. Guten Appetit diese Woche!</p>
+</section>
+{% endblock %}

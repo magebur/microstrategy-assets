@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}{{ recipe.name }} - wochenplan.net{% endblock %}
+
+{% block content %}
+<section class="recipe-detail">
+    <div class="recipe-header">
+        <h1>{{ recipe.name }}</h1>
+        <p class="recipe-desc">{{ recipe.description }}</p>
+        <div class="recipe-meta">
+            <span class="meta-item">
+                <strong>Vorbereitung:</strong> {{ recipe.prep_time_minutes }} Min
+            </span>
+            <span class="meta-item">
+                <strong>Kochzeit:</strong> {{ recipe.cook_time_minutes }} Min
+            </span>
+            <span class="meta-item">
+                <strong>Gesamt:</strong> {{ recipe.prep_time_minutes + recipe.cook_time_minutes }} Min
+            </span>
+            <span class="meta-item">
+                <strong>Schwierigkeit:</strong> {{ recipe.difficulty }}
+            </span>
+            <span class="meta-item">
+                <strong>Portionen:</strong> {{ recipe.base_servings }}
+            </span>
+        </div>
+        <div class="recipe-tags">
+            {% if recipe.is_vegetarian %}
+            <span class="meta-tag tag-veg">vegetarisch</span>
+            {% endif %}
+            {% if recipe.is_kid_friendly %}
+            <span class="meta-tag tag-kid">kinderfreundlich</span>
+            {% endif %}
+            {% if recipe.is_quick %}
+            <span class="meta-tag tag-quick">schnell</span>
+            {% endif %}
+            {% if recipe.cost_level == "guenstig" %}
+            <span class="meta-tag tag-cheap">günstig</span>
+            {% elif recipe.cost_level == "teuer" %}
+            <span class="meta-tag tag-expensive">teuer</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="recipe-ingredients">
+        <h2>Zutaten (für {{ recipe.base_servings }} Portionen)</h2>
+        <ul class="ingredient-list">
+            {% for ing in recipe.ingredients %}
+            <li>
+                <span class="ing-qty">{{ ing.quantity|int if ing.quantity == ing.quantity|int else ing.quantity }} {{ ing.unit }}</span>
+                <span class="ing-name">{{ ing.ingredient_name }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="recipe-back">
+        <a href="javascript:history.back()" class="btn btn-secondary">Zurück</a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 850" role="img" aria-label="Ebook-Cover: Das Selbstversorger-Gartenjahr">
+  <defs>
+    <linearGradient id="himmel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2f5d3a"/>
+      <stop offset="1" stop-color="#1f3f28"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="850" fill="url(#himmel)"/>
+  <rect x="0" y="0" width="22" height="850" fill="#173020"/>
+  <!-- Jahresring: 12 Monatssegmente -->
+  <g transform="translate(311 470)">
+    <circle r="190" fill="none" stroke="#faf7f0" stroke-opacity=".12" stroke-width="44"/>
+    <g fill="none" stroke-width="44">
+      <circle r="190" stroke="#8fb58a" stroke-dasharray="99.5 1094" transform="rotate(-90)"/>
+      <circle r="190" stroke="#b9d39a" stroke-dasharray="99.5 1094" transform="rotate(-60)"/>
+      <circle r="190" stroke="#e8c45a" stroke-dasharray="99.5 1094" transform="rotate(-30)"/>
+      <circle r="190" stroke="#e8a23a" stroke-dasharray="99.5 1094" transform="rotate(0)"/>
+      <circle r="190" stroke="#d9772b" stroke-dasharray="99.5 1094" transform="rotate(30)"/>
+      <circle r="190" stroke="#b65f1c" stroke-dasharray="99.5 1094" transform="rotate(60)"/>
+      <circle r="190" stroke="#8a4a1e" stroke-dasharray="99.5 1094" transform="rotate(90)"/>
+      <circle r="190" stroke="#6b5a4a" stroke-dasharray="99.5 1094" transform="rotate(120)"/>
+      <circle r="190" stroke="#8d9aa6" stroke-dasharray="99.5 1094" transform="rotate(150)"/>
+      <circle r="190" stroke="#c7d3dc" stroke-dasharray="99.5 1094" transform="rotate(180)"/>
+      <circle r="190" stroke="#e6edf2" stroke-dasharray="99.5 1094" transform="rotate(210)"/>
+      <circle r="190" stroke="#a9c2a4" stroke-dasharray="99.5 1094" transform="rotate(240)"/>
+    </g>
+    <!-- Keimling -->
+    <path d="M0 95 C0 40 0 10 0 -20" stroke="#faf7f0" stroke-width="9" stroke-linecap="round" fill="none"/>
+    <path d="M0 -10 C-20 -70 -95 -85 -120 -55 C-95 -10 -35 -5 0 -10Z" fill="#b9d39a"/>
+    <path d="M0 -25 C25 -95 105 -110 130 -75 C100 -25 35 -18 0 -25Z" fill="#8fb58a"/>
+    <path d="M-110 95 Q0 70 110 95" stroke="#d9772b" stroke-width="10" stroke-linecap="round" fill="none"/>
+  </g>
+  <text x="311" y="120" text-anchor="middle" fill="#e8c45a" font-family="Georgia, serif" font-size="26" letter-spacing="6">DAS</text>
+  <text x="311" y="182" text-anchor="middle" fill="#faf7f0" font-family="Georgia, serif" font-size="54" font-weight="700">Selbstversorger-</text>
+  <text x="311" y="244" text-anchor="middle" fill="#faf7f0" font-family="Georgia, serif" font-size="54" font-weight="700">Gartenjahr</text>
+  <text x="311" y="760" text-anchor="middle" fill="#dbe6d5" font-family="Helvetica, Arial, sans-serif" font-size="21">Planen · Säen · Ernten · Bevorraten</text>
+  <text x="311" y="800" text-anchor="middle" fill="#e8c45a" font-family="Helvetica, Arial, sans-serif" font-size="17" letter-spacing="3">SELBSTVERSORGEN.COM</text>
+</svg>

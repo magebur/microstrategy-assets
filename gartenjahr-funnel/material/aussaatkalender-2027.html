@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Aussaatkalender 2027 – selbstversorgen.com</title>
+<style>
+  @page { size: A4 landscape; margin: 9mm 10mm; }
+  :root { --gruen:#2f5d3a; --dunkel:#1f3f28; --erde:#3b2f25; --hell:#6b5a4a; --linie:#d9d2c3; --v:#8fb58a; --d:#2f5d3a; --e:#d9772b; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; font-family: "Helvetica Neue", Arial, sans-serif; color: var(--erde); font-size: 8.4pt; }
+  .seite { width: 277mm; height: 192mm; overflow: hidden; page-break-after: always; position: relative; }
+  .seite:last-child { page-break-after: auto; }
+  h1 { font-family: Georgia, serif; color: var(--dunkel); font-size: 20pt; margin: 0; }
+  h2 { font-family: Georgia, serif; color: var(--dunkel); font-size: 13.5pt; margin: 0 0 3mm; }
+  .kopf { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--gruen); padding-bottom: 2mm; margin-bottom: 2.5mm; }
+  .kopf .unter { color: var(--hell); font-size: 9pt; }
+  .legende { display: flex; gap: 4mm; font-size: 7.8pt; align-items: center; white-space: nowrap; }
+  .legende i { display: inline-block; width: 9mm; height: 3mm; border-radius: 1.5mm; vertical-align: middle; margin-right: 1.5mm; }
+  table { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  th, td { padding: 0; height: 4.32mm; }
+  thead th { font-size: 7.8pt; font-weight: 700; color: #fff; background: var(--gruen); text-align: center; border-left: 1px solid #fff; }
+  thead th.name { text-align: left; padding-left: 2mm; background: var(--dunkel); }
+  td.name { padding-left: 2mm; white-space: nowrap; overflow: hidden; font-weight: 600; border-bottom: 1px solid #eee8dc; }
+  td.name small { font-weight: 400; color: var(--hell); }
+  td.zelle { border-bottom: 1px solid #eee8dc; position: relative; }
+  td.mon { border-left: 1px solid var(--linie); }
+  tr.gruppe td { background: #f1ece2; font-size: 7pt; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--hell); padding-left: 2mm; height: 3.6mm; }
+  .bar { position: absolute; left: 0; right: 0; height: 2.8mm; top: 50%; transform: translateY(-50%); }
+  .bar.v { background: var(--v); }
+  .bar.d { background: var(--d); }
+  .bar.e { background: var(--e); height: 1.6mm; transform: translateY(70%); }
+  .bar.vd { background: linear-gradient(to bottom, var(--v) 50%, var(--d) 50%); }
+  .bar.start { border-top-left-radius: 1.4mm; border-bottom-left-radius: 1.4mm; margin-left: .4mm; }
+  .bar.ende { border-top-right-radius: 1.4mm; border-bottom-right-radius: 1.4mm; margin-right: .4mm; }
+  .eis { position: absolute; top: 0; bottom: 0; left: -1px; width: 0; border-left: 1.5px dashed #5a8bb0; }
+  .fuss { position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: space-between; font-size: 7.4pt; color: var(--hell); border-top: 1px solid var(--linie); padding-top: 1.5mm; }
+  .fuss b { color: var(--gruen); }
+
+  /* Seite 2 */
+  .spalten { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6mm; margin-top: 3mm; }
+  .box { border: 1px solid var(--linie); border-radius: 3mm; padding: 5mm; margin-bottom: 5mm; }
+  .box.akzent { border: 2px solid var(--gruen); background: #f2f7ef; }
+  .box.kuerbis { border: 2px solid var(--e); background: #fff6ec; }
+  .box p { margin: 0 0 2.5mm; line-height: 1.5; font-size: 9.8pt; }
+  .box ul { margin: 0; padding-left: 4mm; line-height: 1.5; font-size: 9.8pt; }
+  .box li { margin-bottom: 1.8mm; }
+  .hoehe { width: 100%; font-size: 9.6pt; }
+  .hoehe td { border-bottom: 1px solid var(--linie); padding: 1.8mm 1mm; height: auto; }
+  .hoehe td:last-child { text-align: right; font-weight: 700; color: var(--dunkel); }
+  .formel { font-family: Georgia, serif; font-size: 11pt; text-align: center; background: #fff; border-radius: 2mm; padding: 2.5mm; margin: 2mm 0 3mm; color: var(--dunkel); }
+  .feld { display: flex; justify-content: space-between; border-bottom: 1px solid var(--hell); padding: 3.2mm 0 .8mm; font-size: 9.6pt; }
+  .feld span:last-child { color: var(--hell); }
+  .termine td { padding: 1.1mm 1mm; border-bottom: 1px solid var(--linie); height: auto; font-size: 9.4pt; vertical-align: top; }
+  .termine td:first-child { font-weight: 700; color: var(--dunkel); white-space: nowrap; width: 27mm; }
+</style>
+</head>
+<body>
+
+<!-- ======================= SEITE 1 ======================= -->
+<div class="seite">
+  <div class="kopf">
+    <div>
+      <h1>Aussaatkalender 2027</h1>
+      <div class="unter">Für Selbstversorger · mittlere Lagen (200–400 m) · Höhenlagen-Korrektur auf Seite 2</div>
+    </div>
+    <div class="legende">
+      <span><i style="background:var(--v)"></i>Vorziehen drinnen</span>
+      <span><i style="background:var(--d)"></i>Säen / pflanzen draußen</span>
+      <span><i style="background:linear-gradient(to bottom,var(--v) 50%,var(--d) 50%)"></i>beides möglich</span>
+      <span><i style="background:var(--e);height:2mm"></i>Ernte</span>
+      <span><i style="border-left:1.5px dashed #5a8bb0;width:3mm;height:4mm;border-radius:0"></i>Eisheilige</span>
+    </div>
+  </div>
+  <table id="kalender"></table>
+  <div class="fuss">
+    <span>Erste Hälfte des Monats = linke Spalte, zweite Hälfte = rechte Spalte.</span>
+    <span>Mehr Planungshilfen: <b>selbstversorgen.com</b></span>
+  </div>
+</div>
+
+<!-- ======================= SEITE 2 ======================= -->
+<div class="seite">
+  <div class="kopf">
+    <div>
+      <h1>Den Kalender an deinen Garten anpassen</h1>
+      <div class="unter">Kein Garten ist der Durchschnitt. Mit diesen drei Schritten passt der Plan zu deinem Standort.</div>
+    </div>
+  </div>
+
+  <div class="spalten">
+    <div>
+      <div class="box akzent">
+        <h2>1 · Höhenlage einrechnen</h2>
+        <p>Pro 100 Höhenmeter beginnt der Frühling grob <b>3–4 Tage später</b> – und der Herbst kommt entsprechend früher.</p>
+        <div class="formel">Verschiebung ≈ (Höhe − 300 m) ÷ 100 × 3,5 Tage</div>
+        <table class="hoehe">
+          <tr><td>bis 400 m</td><td>Kalender gilt</td></tr>
+          <tr><td>400–600 m</td><td>+ ca. 1 Woche</td></tr>
+          <tr><td>600–800 m</td><td>+ ca. 2 Wochen</td></tr>
+          <tr><td>800–1000 m (z. B. Allgäu)</td><td>+ ca. 3 Wochen</td></tr>
+          <tr><td>über 1000 m</td><td>+ 4 Wochen und mehr</td></tr>
+        </table>
+        <p style="margin-top:2.5mm">Verschiebe <b>Aussaat und Pflanzung draußen</b> im Frühjahr nach hinten. Bei <b>Herbst- und Wintersaaten</b> (Feldsalat, Spinat, Knoblauch) gehst du um denselben Wert nach vorne.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="box">
+        <h2>2 · Deine Frostdaten</h2>
+        <p>Frostempfindliche Kulturen (Tomate, Paprika, Gurke, Zucchini, Kürbis, Bohnen, Mais, Basilikum) kommen erst nach dem <b>letzten Frost</b> ins Freie. Frag Nachbarn, die schon lange dort gärtnern – oder notiere dir die Werte selbst.</p>
+        <div class="feld"><span>Höhe meines Gartens</span><span>_______ m</span></div>
+        <div class="feld"><span>Meine Verschiebung</span><span>_______ Tage</span></div>
+        <div class="feld"><span>Letzter Frost (Frühjahr) ca.</span><span>_______</span></div>
+        <div class="feld"><span>Erster Frost (Herbst) ca.</span><span>_______</span></div>
+        <div class="feld"><span>Besonderheit (Senke, Südhang, Wind …)</span><span>_______</span></div>
+      </div>
+      <div class="box">
+        <h2>Merktermine 2027</h2>
+        <table class="termine">
+          <tr><td>Februar</td><td>Anzucht von Paprika, Chili, Sellerie startet</td></tr>
+          <tr><td>11.–15. Mai</td><td>Eisheilige – danach sinkt das Frostrisiko in mittleren Lagen deutlich</td></tr>
+          <tr><td>Mitte Juni</td><td>Schafskälte – Jungpflanzen notfalls abdecken</td></tr>
+          <tr><td>24. Juni</td><td>Johanni – Ende der Rhabarber- und Spargelernte</td></tr>
+          <tr><td>August</td><td>Letzte Saaten für die Winterernte</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <div class="box">
+        <h2>3 · Folgesaaten – nie leere Beete</h2>
+        <ul>
+          <li><b>Radieschen, Rucola:</b> alle 2–3 Wochen kleine Mengen säen</li>
+          <li><b>Salat:</b> alle 3–4 Wochen nachpflanzen statt einmal 30 Köpfe</li>
+          <li><b>Buschbohnen:</b> zwei, drei Sätze bis Anfang Juli</li>
+          <li><b>Möhren:</b> Frühmöhren im März, Lagermöhren bis Juni</li>
+          <li><b>Nach Frühkartoffeln oder Erbsen:</b> Grünkohl pflanzen, später Feldsalat oder Spinat säen</li>
+        </ul>
+      </div>
+      <div class="box kuerbis">
+        <h2>Das ganze Jahr planen?</h2>
+        <p>Dieser Kalender sagt dir, <b>wann</b> du säst. Wie <b>viel</b> deine Familie braucht, welche Beete du wie belegst und wie du die Ernte über den Winter bringst, steht im Ebook <b>„Das Selbstversorger-Gartenjahr“</b> – mit Checklisten für jeden Monat.</p>
+        <p style="margin:0">Infos per E-Mail und auf <b>selbstversorgen.com</b></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="fuss">
+    <span>© 2026 selbstversorgen.com · Nur für den privaten Gebrauch. Termine sind Richtwerte – Wetter und Sorte gehen vor.</span>
+    <span>Mischkultur-Tool · Problemlöser · Obstbaum-Diagnose: <b>selbstversorgen.com</b></span>
+  </div>
+</div>
+
+<script>
+// Halbmonate: 1 = Jan (1. Hälfte), 2 = Jan (2. Hälfte) … 24 = Dez (2. Hälfte)
+// v = vorziehen drinnen, d = säen/pflanzen draußen, e = Ernte. Mehrere Bereiche pro Typ möglich.
+const KULTUREN = [
+  ["Fruchtgemüse"],
+  ["Tomate", "", { v: [[5, 7]], d: [[10, 11]], e: [[14, 19]] }],
+  ["Paprika, Chili", "", { v: [[3, 5]], d: [[10, 11]], e: [[15, 19]] }],
+  ["Aubergine", "", { v: [[4, 5]], d: [[10, 11]], e: [[15, 18]] }],
+  ["Gurke", "", { v: [[8, 9]], d: [[10, 11]], e: [[13, 17]] }],
+  ["Zucchini", "", { v: [[8, 9]], d: [[10, 12]], e: [[12, 18]] }],
+  ["Kürbis", "Lagerkürbis", { v: [[8, 9]], d: [[10, 11]], e: [[17, 19]] }],
+  ["Zuckermais", "", { v: [[8, 9]], d: [[10, 11]], e: [[16, 18]] }],
+  ["Hülsenfrüchte"],
+  ["Erbse", "", { d: [[6, 9]], e: [[11, 14]] }],
+  ["Puffbohne", "", { d: [[5, 7]], e: [[11, 13]] }],
+  ["Buschbohne", "", { d: [[10, 13]], e: [[13, 18]] }],
+  ["Stangenbohne", "", { d: [[10, 11]], e: [[14, 18]] }],
+  ["Wurzel, Knolle, Zwiebel"],
+  ["Kartoffel", "vorkeimen / legen", { v: [[5, 6]], d: [[7, 9]], e: [[13, 18]] }],
+  ["Möhre", "früh bis Lager", { d: [[6, 12]], e: [[12, 21]] }],
+  ["Rote Bete", "", { d: [[8, 12]], e: [[13, 20]] }],
+  ["Pastinake", "", { d: [[6, 9]], e: [[19, 24], [1, 4]] }],
+  ["Radieschen", "Folgesaaten", { d: [[6, 17]], e: [[8, 19]] }],
+  ["Zwiebel", "Steckzwiebeln", { d: [[6, 8]], e: [[14, 16]] }],
+  ["Knoblauch", "Herbstpflanzung", { d: [[18, 20]], e: [[13, 14]] }],
+  ["Lauch", "Winterlauch", { v: [[4, 6]], d: [[9, 12]], e: [[17, 24], [1, 5]] }],
+  ["Knollensellerie", "", { v: [[4, 5]], d: [[10, 11]], e: [[18, 20]] }],
+  ["Kohl"],
+  ["Weiß-/Rotkohl", "Lagerkohl", { v: [[6, 8]], d: [[9, 11]], e: [[17, 20]] }],
+  ["Brokkoli", "", { v: [[6, 11]], d: [[8, 13]], e: [[12, 19]] }],
+  ["Kohlrabi", "", { v: [[5, 13]], d: [[7, 15]], e: [[10, 19]] }],
+  ["Grünkohl", "", { v: [[10, 12]], d: [[13, 14]], e: [[21, 24], [1, 4]] }],
+  ["Rosenkohl", "", { v: [[7, 9]], d: [[10, 12]], e: [[19, 24], [1, 3]] }],
+  ["Blatt und Kraut"],
+  ["Salat", "Kopf-/Pflücksalat", { v: [[4, 6]], d: [[6, 15]], e: [[9, 19]] }],
+  ["Spinat", "Frühjahr + Herbst", { d: [[5, 8], [16, 18]], e: [[8, 11], [19, 22]] }],
+  ["Mangold", "", { d: [[7, 12]], e: [[12, 21]] }],
+  ["Feldsalat", "", { d: [[15, 18]], e: [[19, 24], [1, 6]] }],
+  ["Endivie", "", { d: [[12, 14]], e: [[17, 21]] }],
+  ["Rucola", "Folgesaaten", { d: [[6, 17]], e: [[8, 20]] }],
+  ["Petersilie", "", { d: [[6, 11]], e: [[11, 22]] }],
+  ["Basilikum", "", { v: [[6, 8]], d: [[10, 11]], e: [[13, 17]] }],
+];
+const MONATE = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"];
+
+function inRange(ranges, h) {
+  if (!ranges) return null;
+  for (const [a, b] of ranges) if (h >= a && h <= b) return { start: h === a, ende: h === b };
+  return null;
+}
+
+const t = document.getElementById("kalender");
+let html = '<colgroup><col style="width:40mm">' + '<col>'.repeat(24) + '</colgroup>';
+html += '<thead><tr><th class="name">Kultur</th>' + MONATE.map(m => `<th colspan="2">${m}</th>`).join("") + "</tr></thead><tbody>";
+for (const k of KULTUREN) {
+  if (k.length === 1) { html += `<tr class="gruppe"><td colspan="25">${k[0]}</td></tr>`; continue; }
+  const [name, zusatz, z] = k;
+  html += `<tr><td class="name">${name}${zusatz ? ` <small>${zusatz}</small>` : ""}</td>`;
+  for (let h = 1; h <= 24; h++) {
+    const v = inRange(z.v, h), d = inRange(z.d, h), e = inRange(z.e, h);
+    const bar = (typ, r) => `<div class="bar ${typ}${r.start ? " start" : ""}${r.ende ? " ende" : ""}"></div>`;
+    let inner = "";
+    if (v && d) inner += bar("vd", { start: v.start && d.start, ende: v.ende && d.ende });
+    else if (v) inner += bar("v", v);
+    else if (d) inner += bar("d", d);
+    if (e) inner += bar("e", e);
+    if (h === 10) inner += '<div class="eis"></div>';
+    html += `<td class="zelle${h % 2 === 1 ? " mon" : ""}">${inner}</td>`;
+  }
+  html += "</tr>";
+}
+t.innerHTML = html + "</tbody>";
+</script>
+</body>
+</html>

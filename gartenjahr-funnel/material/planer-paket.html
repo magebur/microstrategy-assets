@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Planer-Paket – Das Selbstversorger-Gartenjahr</title>
+<style>
+  @page { size: A4 portrait; margin: 12mm; }
+  :root { --gruen:#2f5d3a; --dunkel:#1f3f28; --erde:#3b2f25; --hell:#6b5a4a; --linie:#cfc6b4; --zart:#eee8dc; --kuerbis:#d9772b; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; font-family: "Helvetica Neue", Arial, sans-serif; color: var(--erde); font-size: 9.5pt; }
+  .seite { width: 186mm; height: 271mm; position: relative; overflow: hidden; page-break-after: always; }
+  .seite:last-child { page-break-after: auto; }
+  h1 { font-family: Georgia, serif; color: var(--dunkel); font-size: 22pt; margin: 0; }
+  h2 { font-family: Georgia, serif; color: var(--dunkel); font-size: 12pt; margin: 0 0 2mm; }
+  .kopf { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--gruen); padding-bottom: 2.5mm; margin-bottom: 4mm; }
+  .kopf .unter { color: var(--hell); font-size: 9pt; margin-top: 1mm; }
+  .jahr { font-size: 9pt; color: var(--hell); white-space: nowrap; }
+  .jahr span { display: inline-block; width: 22mm; border-bottom: 1px solid var(--hell); }
+  .fuss { position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: space-between; font-size: 7.5pt; color: var(--hell); border-top: 1px solid var(--zart); padding-top: 1.5mm; }
+  .tipp { background: #f2f7ef; border-left: 3px solid var(--gruen); padding: 2.5mm 3.5mm; font-size: 8.6pt; line-height: 1.45; margin-bottom: 4mm; }
+
+  /* Deckblatt */
+  .deck { background: var(--dunkel); color: #faf7f0; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-radius: 4mm; }
+  .deck h1 { color: #faf7f0; font-size: 34pt; line-height: 1.15; }
+  .deck .dach { color: #e8c45a; letter-spacing: .3em; font-size: 10pt; margin-bottom: 6mm; }
+  .deck ul { list-style: none; padding: 0; margin: 12mm 0 0; font-size: 12pt; line-height: 2; }
+  .deck .klein { position: absolute; bottom: 12mm; font-size: 9pt; color: #c9d6c3; letter-spacing: .15em; }
+  .deck .gebrauch { margin-top: 14mm; max-width: 120mm; font-size: 9.5pt; line-height: 1.55; color: #dbe6d5; }
+
+  /* Beetplan-Raster */
+  .raster { display: grid; grid-template-columns: repeat(18, 1fr); border-top: 1px solid var(--linie); border-left: 1px solid var(--linie); }
+  .raster div { aspect-ratio: 1; border-right: 1px solid var(--linie); border-bottom: 1px solid var(--linie); }
+  .raster div:nth-child(18n+1) { border-left: 0; }
+  .massstab { font-size: 8pt; color: var(--hell); margin: 2mm 0 4mm; display: flex; justify-content: space-between; }
+  .himmel { position: absolute; right: 0; top: 24mm; text-align: center; font-size: 8pt; font-weight: 700; color: var(--gruen); }
+
+  /* Tabellen */
+  table { border-collapse: collapse; width: 100%; table-layout: fixed; }
+  th { background: var(--gruen); color: #fff; font-size: 8pt; text-align: left; padding: 1.8mm 1.5mm; font-weight: 700; border-right: 1px solid #fff; }
+  td { border: 1px solid var(--linie); height: 8.4mm; padding: 0 1.5mm; font-size: 8.5pt; }
+  tbody tr:nth-child(even) td { background: #faf7f0; }
+  .ff td { height: 11mm; }
+  .ff td:first-child { font-weight: 700; color: var(--dunkel); background: #f2f7ef; }
+  .legende-zehrer { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin: 4mm 0; font-size: 8.4pt; line-height: 1.4; }
+  .legende-zehrer div { border: 1px solid var(--linie); border-radius: 2mm; padding: 2.5mm; }
+  .legende-zehrer b { display: block; color: var(--dunkel); margin-bottom: 1mm; }
+
+  .summen { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin-top: 4mm; }
+  .linien div { border-bottom: 1px solid var(--linie); height: 8mm; }
+  .box { border: 1px solid var(--linie); border-radius: 2.5mm; padding: 3.5mm; }
+</style>
+</head>
+<body>
+
+<!-- ============ DECKBLATT ============ -->
+<div class="seite deck">
+  <div class="dach">PLANER-PAKET</div>
+  <h1>Das Selbstversorger-<br>Gartenjahr</h1>
+  <ul>
+    <li>① Beetplan &amp; Fruchtfolge</li>
+    <li>② Anbauplan</li>
+    <li>③ Erntetagebuch &amp; Jahresauswertung</li>
+  </ul>
+  <p class="gebrauch">So nutzt du die Vorlagen: Drucke den Beetplan einmal pro Jahr aus, den Anbauplan und das Erntetagebuch so oft du sie brauchst. Bewahre alles in einem Ordner auf – nach zwei, drei Jahren hast du die beste Planungsgrundlage, die es für deinen Garten gibt: deine eigenen Zahlen.</p>
+  <div class="klein">SELBSTVERSORGEN.COM</div>
+</div>
+
+<!-- ============ BEETPLAN ============ -->
+<div class="seite">
+  <div class="kopf">
+    <div><h1>① Beetplan</h1><div class="unter">Zeichne deine Beete maßstabsgetreu ein und trage ein, was wo wächst.</div></div>
+    <div class="jahr">Gartenjahr <span></span></div>
+  </div>
+  <div class="tipp"><b>So geht’s:</b> 1 Kästchen = <b>50 × 50 cm</b> (oder wähle deinen eigenen Maßstab). Markiere zuerst Wege, Kompost, Wasserstelle und schattige Bereiche. Nummeriere die Beete (B1, B2 …) – diese Nummern nutzt du im Anbauplan und Erntetagebuch.</div>
+  <div class="raster" id="raster"></div>
+  <div class="massstab"><span>Maßstab: 1 Kästchen = ______ cm</span><span>Norden ↑ einzeichnen</span><span>Gesamtfläche: ______ m²</span></div>
+  <div class="summen">
+    <div class="box">
+      <h2>Legende / Notizen</h2>
+      <div class="linien"><div></div><div></div><div></div><div></div></div>
+    </div>
+    <div class="box">
+      <h2>Besonderheiten am Standort</h2>
+      <div class="linien"><div></div><div></div><div></div><div></div></div>
+    </div>
+  </div>
+  <div class="fuss"><span>Planer-Paket · Das Selbstversorger-Gartenjahr</span><span>selbstversorgen.com</span></div>
+</div>
+
+<!-- ============ FRUCHTFOLGE ============ -->
+<div class="seite">
+  <div class="kopf">
+    <div><h1>① Fruchtfolge über 4 Jahre</h1><div class="unter">Damit kein Beet zwei Jahre hintereinander dasselbe Nährstoffprofil trägt.</div></div>
+  </div>
+  <div class="legende-zehrer">
+    <div><b>Starkzehrer</b>Kohl, Kürbis, Zucchini, Gurke, Tomate, Kartoffel, Lauch, Sellerie, Mais</div>
+    <div><b>Mittelzehrer</b>Möhre, Rote Bete, Mangold, Spinat, Salat, Zwiebel, Pastinake, Fenchel</div>
+    <div><b>Schwachzehrer</b>Erbse, Bohne, Radieschen, Feldsalat, Kräuter</div>
+    <div><b>Gründüngung / Pause</b>Phacelia, Senf, Klee, Wicke-Roggen – oder Kompost einarbeiten</div>
+  </div>
+  <div class="tipp">Grundregel: Im Beet wandert die Gruppe jedes Jahr eine Spalte weiter – <b>Stark → Mittel → Schwach → Gründüngung</b>. Starkzehrer bekommen im Herbst davor reichlich Kompost. Kohlgewächse frühestens nach 4 Jahren wieder auf dasselbe Beet (Kohlhernie).</div>
+  <table class="ff">
+    <thead><tr><th style="width:18mm">Beet</th><th>Jahr 1: ______</th><th>Jahr 2: ______</th><th>Jahr 3: ______</th><th>Jahr 4: ______</th></tr></thead>
+    <tbody id="ff"></tbody>
+  </table>
+  <div class="fuss"><span>Planer-Paket · Das Selbstversorger-Gartenjahr</span><span>selbstversorgen.com</span></div>
+</div>
+
+<!-- ============ ANBAUPLAN ============ -->
+<div class="seite">
+  <div class="kopf">
+    <div><h1>② Anbauplan</h1><div class="unter">Was, wann, wie viel – eine Zeile pro Kultur bzw. pro Satz.</div></div>
+    <div class="jahr">Gartenjahr <span></span></div>
+  </div>
+  <div class="tipp"><b>Menge planen:</b> Überlege zuerst, wie viel deine Familie <b>essen und einlagern</b> will, und rechne daraus Pflanzen und Fläche zurück (Ebook, Teil 1, Kapitel 1). Folgesaaten trägst du als eigene Zeile ein (z. B. „Salat Satz 2“).</div>
+  <table>
+    <colgroup><col style="width:27mm"><col style="width:23mm"><col style="width:12mm"><col style="width:17mm"><col style="width:17mm"><col style="width:17mm"><col style="width:22mm"><col></colgroup>
+    <thead><tr><th>Kultur</th><th>Sorte</th><th>Beet</th><th>Menge (Pfl./m)</th><th>Vorziehen</th><th>Draußen</th><th>Ernte von–bis</th><th>Notiz / erledigt</th></tr></thead>
+    <tbody id="anbau"></tbody>
+  </table>
+  <div class="fuss"><span>Planer-Paket · Das Selbstversorger-Gartenjahr</span><span>selbstversorgen.com</span></div>
+</div>
+
+<!-- ============ ERNTETAGEBUCH ============ -->
+<div class="seite">
+  <div class="kopf">
+    <div><h1>③ Erntetagebuch</h1><div class="unter">Wiegen oder zählen, eintragen – fertig. Diese Zahlen sind Gold für die Planung im nächsten Jahr.</div></div>
+    <div class="jahr">Gartenjahr <span></span></div>
+  </div>
+  <table>
+    <colgroup><col style="width:17mm"><col style="width:30mm"><col style="width:12mm"><col style="width:22mm"><col style="width:13mm"><col style="width:13mm"><col style="width:13mm"><col></colgroup>
+    <thead><tr><th>Datum</th><th>Kultur / Sorte</th><th>Beet</th><th>Menge (kg/Stk.)</th><th>frisch</th><th>Lager</th><th>haltbar gemacht</th><th>Notiz (Qualität, Wetter, Schädlinge)</th></tr></thead>
+    <tbody id="ernte"></tbody>
+  </table>
+  <div class="fuss"><span>Planer-Paket · Das Selbstversorger-Gartenjahr</span><span>selbstversorgen.com</span></div>
+</div>
+
+<!-- ============ JAHRESAUSWERTUNG ============ -->
+<div class="seite">
+  <div class="kopf">
+    <div><h1>③ Jahresauswertung</h1><div class="unter">Am besten im November ausfüllen – solange du dich noch erinnerst.</div></div>
+    <div class="jahr">Gartenjahr <span></span></div>
+  </div>
+  <table>
+    <colgroup><col style="width:34mm"><col style="width:24mm"><col style="width:24mm"><col style="width:24mm"><col></colgroup>
+    <thead><tr><th>Kultur</th><th>Geerntet gesamt</th><th>Gebraucht hätten wir</th><th>Nächstes Jahr</th><th>Was ändere ich?</th></tr></thead>
+    <tbody id="auswertung"></tbody>
+  </table>
+  <div class="summen">
+    <div class="box"><h2>Das lief richtig gut</h2><div class="linien"><div></div><div></div><div></div><div></div><div></div></div></div>
+    <div class="box"><h2>Das mache ich nächstes Jahr anders</h2><div class="linien"><div></div><div></div><div></div><div></div><div></div></div></div>
+  </div>
+  <div class="fuss"><span>Planer-Paket · Das Selbstversorger-Gartenjahr</span><span>selbstversorgen.com</span></div>
+</div>
+
+<script>
+const fill = (id, rows, cols) => {
+  document.getElementById(id).innerHTML = Array.from({ length: rows }, () => "<tr>" + "<td></td>".repeat(cols) + "</tr>").join("");
+};
+document.getElementById("raster").innerHTML = "<div></div>".repeat(18 * 16);
+document.getElementById("ff").innerHTML = Array.from({ length: 16 }, (_, i) => `<tr><td>B${i + 1}</td><td></td><td></td><td></td><td></td></tr>`).join("");
+fill("anbau", 25, 8);
+fill("ernte", 27, 8);
+fill("auswertung", 16, 5);
+</script>
+</body>
+</html>

@@ -246,6 +246,8 @@ def dot(ctx, x, y, r, col, alpha=1.0):
 
 
 def line(ctx, pts, col, w, alpha=1.0, cap=cairo.LINE_CAP_ROUND):
+    if len(pts) < 2:
+        return
     ctx.new_path()
     ctx.move_to(*pts[0])
     for p in pts[1:]:
